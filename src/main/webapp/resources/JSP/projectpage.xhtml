@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>My Portfolio</title>
+    <meta charset="UTF-8" />
+    <h:outputStylesheet library="CSS" name="style.css" /> <!-- Linking external CSS file -->
+<!--    <h:outputScript library="js" name="jquery.min.js" target="head" /> &lt;!&ndash; Including external JavaScript file &ndash;&gt;-->
+    <h:outputScript library="JS" name="demo.js" target="head" /> <!-- Including external JavaScript file -->
+    <f:metadata>
+        <f:viewParam name="Account" value="#{account}" />
+        <f:viewParam name="Render" value="#{render}" />
+    </f:metadata>
+    <style>
+        .edit-button {
+            background: #5E5DF0;
+            border-radius: 999px;
+            box-shadow: #5E5DF0 0 10px 20px -10px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            margin-right: 20px;
+            font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            opacity: 1;
+            outline: 0 solid transparent;
+            padding: 8px 18px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: fit-content;
+            word-break: break-word;
+            border: 0;
+        }
+    </style>
+</h:head>
+
+<!-- HTML !-->
+<button class="button-36" role="button">Button 36</button>
+
+
+<h:body>
+    <header>
+        <h1>NavigatorView</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/homepage.xhtml">HomePage
+                <f:param name="Account" value="#{account}" />
+                <f:param name="Render" value="#{render}" />
+            </h:outputLink></li>
+            <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/projectpage.xhtml">ProjectList
+                <f:param name="Account" value="#{account}" />
+                <f:param name="Render" value="#{render}" />
+            </h:outputLink></li>
+        </ul>
+    </nav> <!-- Including the navigation bar -->
+
+    <h2>Portfolio</h2>
+
+    <nav>
+        <ul>
+            <li>
+                <h:button value="AddNewProject" outcome="/resources/JSP/projectAdd.xhtml" styleClass="edit-button" rendered="#{renderBean.getRender(render)}">
+                    <f:param name="Account" value="#{account}" />
+                    <f:param name="projectTitle" value="#{projectBean.selectedProject.title}" />
+                    <f:param name="projectSummary" value="#{projectBean.selectedProject.summary}" />
+                    <f:param name="projectDescription" value="#{projectBean.selectedProject.description}" />
+                    <f:param name="projectKeywords" value="#{projectBean.selectedProject.keywords}" />
+                    <f:param name="projectType" value="#{projectBean.selectedProject.type}" />
+                    <f:param name="projectCollaborators" value="#{projectBean.selectedProject.collaborators}" />
+                </h:button>
+
+                <h:button value="DeleteProject" outcome="/resources/JSP/projectDelete.xhtml" styleClass="edit-button" rendered="#{renderBean.getRender(render)}" >
+                    <f:param name="Account" value="#{account}" />
+                    <f:param name="projectTitle" value="#{projectBean.selectedProject.title}"/>
+                </h:button>
+            </li>
+        </ul>
+    </nav>
+
+
+
+    <h:form>
+        <ul>
+            <h:inputHidden value="#{projectBean.setProjectListByAccount(account)}" />
+            <ui:repeat value="#{projectBean.projectList}" var="project">
+                <li>
+                    <h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/projectEdit.xhtml">
+                        #{project.title}
+                        <f:param name="Render" value="#{render}" />
+                        <f:param name="projectID" value="#{project.id}" />
+                        <f:param name="Account" value="#{account}" />
+                        <f:param name="projectTitle" value="#{project.title}" />
+                        <f:param name="projectSummary" value="#{project.summary}" />
+                        <f:param name="projectDescription" value="#{project.description}" />
+                        <f:param name="projectKeywords" value="#{project.keywords}" />
+                        <f:param name="projectType" value="#{project.type}" />
+                        <f:param name="projectCollaborators" value="#{project.collaborators}" />
+
+                    </h:outputLink>
+                </li>
+            </ui:repeat>
+        </ul>
+    </h:form>
+
+
+
+
+</h:body>
+</html>

@@ -1,0 +1,77 @@
+/* Custom Styles */
+
+/* Set the font family for the entire body */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Styling for the navigation bar */
+nav {
+    background-color: #48206c;
+    padding: 10px;
+}
+
+/* Styling for the navigation links */
+nav ul li {
+    display: inline; /* Display the list items horizontally */
+    margin-right: 10px; /* Adjust the margin to set the spacing between the links */
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Styling for the main heading */
+h1 {
+    background-color: #48206c;
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Styling for the secondary headings */
+h2 {
+    background-color: #51247a;
+    color: white;
+    padding: 40px;
+    padding-left: 50px;
+    margin: 0;
+}
+
+/* Styling for the tertiary headings */
+h3 {
+    background-color: #efefef;
+    color: black;
+    padding: 60px;
+    margin: 0;
+    font-weight: 300; /* Make the font thinner */
+    line-height: 1.5; /* Increase the line height */
+}
+
+/* Styling for the fourth-level headings */
+h4 {
+    background-color: #e0e0e0;
+    color: black;
+    padding: 80px;
+    padding-right: 80px;
+    margin: 0;
+}
+
+/* Styling for images */
+img {
+    float: right;
+    margin-top: -300px;
+    margin-left: 10px; /* Adjust the margin to fit your needs */
+}
+
+/* Styling for paragraphs */
+p {
+    font-weight: 500; /* Make the font thinner */
+    line-height: 3; /* Increase the line height */
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+}
+

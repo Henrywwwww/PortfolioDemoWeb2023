@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:head>
+    <title>Project Details</title>
+    <meta charset="UTF-8" />
+    <h:outputStylesheet library="CSS" name="style.css" /> <!-- Linking external CSS file -->
+    <h:outputScript library="JS" name="demo.js" /> <!-- Including external JavaScript file -->
+    <f:metadata>
+        <f:viewParam name="projectID" value="#{id}" />
+        <f:viewParam name="Account" value="#{account}" />
+    </f:metadata>
+</h:head>
+
+
+
+<h:body>
+    <header>
+        <h1>NavigatorView</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/homepage.xhtml">HomePage
+                <f:param name="Account" value="#{account}" />
+            </h:outputLink></li>
+            <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/projectpage.xhtml">ProjectList
+                <f:param name="Account" value="#{account}" />
+            </h:outputLink></li>
+        </ul>
+    </nav> <!-- Including the navigation bar -->
+
+
+    <!--    <h:outputScript library="js" name="jquery-3.6.0.min.js" target="head" />-->
+    <!--    <h:outputScript library="js" name="forProject.js" target="head" /> &lt;!&ndash; Including the separated script file &ndash;&gt;-->
+
+
+    <h:panelGroup id="projectDetails" style="position: relative;">
+<!-- <h:form>-->
+            <h:inputHidden value="#{projectBean.getSelectedProjectById(id)}" />
+            <h2>Title: <h:outputText id="titleOutput1" value="#{projectBean.selectedProject.title}" /></h2>
+            <p>Summary: <h:outputText id="summaryOutput1" value="#{projectBean.selectedProject.summary}" /></p>
+            <p>Description: <h:outputText id="descriptionOutput1" value="#{projectBean.selectedProject.description}" /></p>
+            <p>Keywords: <h:outputText id="keywordsOutput1" value="#{projectBean.selectedProject.keywords}" /></p>
+            <p>Type: <h:outputText id="typeOutput1" value="#{projectBean.selectedProject.type}" /></p>
+            <p>Collaborators: <h:outputText id="collaboratorsOutput1" value="#{projectBean.selectedProject.collaborators}" /></p>
+
+        <h:button value="Edit"  outcome="/resources/JSP/projectEdit.xhtml">
+            <f:param name="Account" value="#{account}" />
+            <f:param name="projectID" value="#{id}" />
+            <f:param name="projectTitle" value="#{projectBean.selectedProject.title}" />
+            <f:param name="projectSummary" value="#{projectBean.selectedProject.summary}" />
+            <f:param name="projectDescription" value="#{projectBean.selectedProject.description}" />
+            <f:param name="projectKeywords" value="#{projectBean.selectedProject.keywords}" />
+            <f:param name="projectType" value="#{projectBean.selectedProject.type}" />
+            <f:param name="projectCollaborators" value="#{projectBean.selectedProject.collaborators}" />
+        </h:button>
+    </h:panelGroup>
+
+
+</h:body>
+</html>
+
+

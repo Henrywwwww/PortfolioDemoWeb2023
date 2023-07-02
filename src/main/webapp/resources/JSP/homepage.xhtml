@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+  <h:outputStylesheet library="CSS" name="style.css" rendered="#{styleBean.mainFile}"/><!-- Linking external CSS file -->
+  <h:outputStylesheet library="CSS" name="secondstyle.css" rendered="#{styleBean.secondFile}"/>
+  <title>Tutorial</title>
+  <meta charset="UTF-8"/>
+
+  <h:outputScript library="JS" name="demo.js"/> <!-- Including external JavaScript file -->
+  <f:metadata>
+    <f:viewParam name="Account" value="#{account}" />
+    <f:viewParam name="Render" value="#{render}" />
+  </f:metadata>
+  <style>
+    .edit-button {
+      background: #5E5DF0;
+      border-radius: 999px;
+      box-shadow: #5E5DF0 0 10px 20px -10px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      margin-right: 20px;
+      font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      opacity: 1;
+      outline: 0 solid transparent;
+      padding: 8px 18px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: fit-content;
+      word-break: break-word;
+      border: 0;
+    }
+  </style>
+</h:head>
+
+<h:body>
+  <!--  <ui:include src="navigator.xhtml"/> &lt;!&ndash; Placeholder for the navigation bar &ndash;&gt;-->
+  <header>
+    <h1>NavigatorView</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/homepage.xhtml">HomePage
+        <f:param name="Account" value="#{account}" />
+        <f:param name="Render" value="#{render}" />
+      </h:outputLink></li>
+      <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/projectpage.xhtml">ProjectList
+        <f:param name="Account" value="#{account}" />
+        <f:param name="Render" value="#{render}" />
+      </h:outputLink></li>
+    </ul>
+  </nav>
+  <h:outputScript library="JS" name="demo.js"/> <!-- Including the includeHTML() JavaScript function -->
+
+  <h2>SelfIntroduction</h2>
+  <nav>
+    <ul>
+      <li>
+        <h:inputHidden value="#{portfolioBean.getPortfolioByAccount(account)}" />
+        <h:button value="Edit" outcome="/resources/JSP/homepageEdit.xhtml" styleClass="edit-button" rendered="#{renderBean.getRender(render)}">
+          <f:param name="Account" value="#{account}" />
+          <f:param name="PAccount" value="#{portfolioBean.portfolio.account}" />
+          <f:param name="Name" value="#{portfolioBean.portfolio.name}" />
+          <f:param name="Gender" value="#{portfolioBean.portfolio.gender}" />
+          <f:param name="Age" value="#{portfolioBean.portfolio.age}" />
+          <f:param name="University" value="#{portfolioBean.portfolio.university}" />
+          <f:param name="Major" value="#{portfolioBean.portfolio.major}" />
+          <f:param name="IDnumber" value="#{portfolioBean.portfolio.IDnumber}" />
+          <f:param name="Content" value="#{portfolioBean.portfolio.content}" />
+        </h:button>
+      </li>
+    </ul>
+  </nav>
+
+  <h:panelGroup id="projectDetails" style="position: relative;">
+
+
+
+    <h4>
+      <br/><br/>Name: <h:outputText id="titleOutput1" value="#{portfolioBean.portfolio.name}" />
+      <br/><br/>Gender: <h:outputText id="summaryOutput1" value="#{portfolioBean.portfolio.gender}" />
+      <br/><br/>Age: <h:outputText id="descriptionOutput1" value="#{portfolioBean.portfolio.age}" />
+      <br/><br/>
+      <br/><br/>University: <h:outputText id="keywordsOutput1" value="#{portfolioBean.portfolio.university}" />
+      <br/><br/>Major: <h:outputText id="typeOutput1" value="#{portfolioBean.portfolio.major}" />
+      <br/><br/>ID number: <h:outputText id="collaboratorsOutput1" value="#{portfolioBean.portfolio.IDnumber}" />
+    </h4>
+
+    <div class="panel-pane__content">
+      <h3>Content: <h:outputText id="Content" value="#{portfolioBean.portfolio.content}" /></h3>
+    </div>
+
+  </h:panelGroup>
+
+  <h:outputText value=" " escape="false"/> <!-- Empty paragraph for spacing -->
+  <h:outputText value=" " escape="false"/> <!-- Empty paragraph for spacing -->
+</h:body>
+</html>

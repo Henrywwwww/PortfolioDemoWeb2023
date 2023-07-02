@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<!-- editProject.xhtml -->
+<h:head>
+   <title>Project Details</title>
+   <meta charset="UTF-8" />
+   <h:outputStylesheet library="CSS" name="style.css" /> <!-- Linking external CSS file -->
+   <h:outputScript library="JS" name="demo.js" /> <!-- Including external JavaScript file -->
+   <f:metadata>
+      <f:viewParam name="Account" value="#{account}" />
+      <f:viewParam name="projectTitle" value="#{title}" />
+      <f:viewParam name="projectSummary" value="#{summary}" />
+      <f:viewParam name="projectDescription" value="#{description}" />
+      <f:viewParam name="projectKeywords" value="#{keywords}" />
+      <f:viewParam name="projectType" value="#{type}" />
+      <f:viewParam name="projectCollaborators" value="#{collaborators}" />
+   </f:metadata>
+   <style>
+      .container {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+      }
+
+      .form-group {
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         margin-bottom: 10px;
+      }
+
+      .form-group label {
+         margin-right: 10px;
+      }
+      .edit-button {
+         background: #5E5DF0;
+         border-radius: 999px;
+         box-shadow: #5E5DF0 0 10px 20px -10px;
+         box-sizing: border-box;
+         color: #FFFFFF;
+         cursor: pointer;
+         margin-right: 20px;
+         font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+         font-size: 16px;
+         font-weight: 700;
+         line-height: 24px;
+         opacity: 1;
+         outline: 0 solid transparent;
+         padding: 8px 18px;
+         user-select: none;
+         -webkit-user-select: none;
+         touch-action: manipulation;
+         width: fit-content;
+         word-break: break-word;
+         border: 0;
+      }
+   </style>
+
+</h:head>
+<h:body>
+   <header>
+      <h1>NavigatorView</h1>
+   </header>
+   <nav>
+      <ul>
+         <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/homepage.xhtml">HomePage
+            <f:param name="Account" value="#{account}" />
+         </h:outputLink></li>
+         <li><h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/projectpage.xhtml">ProjectList
+            <f:param name="Account" value="#{account}" />
+         </h:outputLink></li>
+      </ul>
+   </nav>  <!-- Including the navigation bar -->
+   <h2 >AddProject</h2>
+   <h:panelGroup layout="block" styleClass="container">
+      <h:panelGroup layout="block" styleClass="panel">
+
+         <div class="panel-content">
+            <h:form >
+
+               <h:panelGroup styleClass="form-group">
+                  <h:outputLabel for="title" value="Title:" />
+                  <h:inputText id="title" name="title" value="#{title}" required="true"/>
+               </h:panelGroup>
+
+               <h:panelGroup styleClass="form-group">
+                  <h:outputLabel for="summary" value="Summary:" />
+                  <h:inputTextarea id="summary" name="summary" value="#{summary}" required="true"/>
+               </h:panelGroup>
+
+               <h:panelGroup styleClass="form-group">
+                  <h:outputLabel for="description" value="Description:" />
+                  <h:inputTextarea id="description" name="description" value="#{description}" required="true"/>
+               </h:panelGroup>
+
+               <h:panelGroup styleClass="form-group">
+                  <h:outputLabel for="keywords" value="keywords:" />
+                  <h:inputTextarea id="keywords" name="keywords" value="#{keywords}" required="true"/>
+               </h:panelGroup>
+
+               <h:panelGroup styleClass="form-group">
+                  <h:outputLabel for="type" value="Type:" />
+                  <h:inputTextarea id="type" name="type" value="#{type}" required="true"/>
+               </h:panelGroup>
+
+               <h:panelGroup styleClass="form-group">
+                  <h:outputLabel for="collaborators" value="Collaborators:" />
+                  <h:inputTextarea id="collaborators" name="collaborators" value="#{collaborators}" required="true"/>
+               </h:panelGroup>
+
+
+               <!--               <h:panelGroup styleClass="form-group">-->
+               <!--                  <h:outputLabel for="keywords" value="Keywords:" />-->
+               <!--                  <ui:repeat value="#{profile.projectEditing.keywords}" var="keyword" varStatus="status">-->
+               <!--                     <h:inputText name="keywords" value="#{profile.projectEditing.keywords[status.index]}" required="true">-->
+               <!--                     </h:inputText>-->
+               <!--                  </ui:repeat>-->
+               <!--                  <h:commandButton value="Add Keyword" styleClass="button" action="#{profile.addKeyword()}"/>-->
+               <!--                  <h:commandButton value="Remove Keyword" styleClass="button" action="#{profile.removeKeyword()}" required="true"/>-->
+               <!--               </h:panelGroup>-->
+
+               <h:panelGroup styleClass="form-group" >
+                  <h:commandButton value="Save" styleClass="edit-button" action="#{projectBean.insertProject(account,title, summary, description,keywords,type,collaborators)}"/>
+
+
+               </h:panelGroup>
+            </h:form>
+         </div>
+      </h:panelGroup>
+   </h:panelGroup>
+
+</h:body>
+</html>
+

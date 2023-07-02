@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+
+   <h:outputStylesheet library="CSS" name="style.css" rendered="#{styleBean.mainFile}"/><!-- Linking external CSS file -->
+   <h:outputStylesheet library="CSS" name="secondstyle.css" rendered="#{styleBean.secondFile}"/>
+
+   <title>Tutorial</title>
+   <meta charset="UTF-8"/>
+
+
+
+   <h:outputScript library="JS" name="demo.js"/> <!-- Including external JavaScript file -->
+   <style>
+      .container {
+         display: flex;
+         justify-content: flex-start;
+         align-items: center;
+         height: 100vh;
+      }
+      .panel {
+         max-width: 400px;
+         padding: 20px;
+         text-align: center;
+      }
+      .form-group {
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         margin-bottom: 20px;
+      }
+      .form-group label {
+         display: inline-block;
+         width: 80px;
+         text-align: right;
+         margin-right: 10px;
+
+      }
+      .form-group input[type="text"],
+      .form-group input[type="password"] {
+         width: 200px;
+      }
+      .form-group .button {
+         margin-right: 10px;
+      }
+      .image-container {
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         width: 200px;
+         margin-left: auto;
+      }
+      .image-container img {
+         width:1066px;
+         height: 400px;
+      }
+
+
+                                                            /* CSS */
+      .edit-button {
+         background: #5E5DF0;
+         border-radius: 999px;
+         box-shadow: #5E5DF0 0 10px 20px -10px;
+         box-sizing: border-box;
+         color: #FFFFFF;
+         cursor: pointer;
+         margin-right: 20px;
+         font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+         font-size: 16px;
+         font-weight: 700;
+         line-height: 24px;
+         opacity: 1;
+         outline: 0 solid transparent;
+         padding: 8px 18px;
+         user-select: none;
+         -webkit-user-select: none;
+         touch-action: manipulation;
+         width: fit-content;
+         word-break: break-word;
+         border: 0;
+      }
+
+   </style>
+</h:head>
+
+<h:body>
+   <h:outputScript library="JS" name="demo.js"/> <!-- Including the includeHTML() JavaScript function -->
+
+   <h1>A Web Application demo of Portfolio</h1>
+   <header>
+      <h2>LoginURL</h2>
+   </header>
+   <nav>
+      <ul>
+         <ui:repeat value="#{userBean.userList}" var="user">
+            <li>
+               <h:outputLink value="http://localhost:8080/Tutorial_5_war_exploded/resources/JSP/homepage.xhtml">
+                  #{user.account}
+                  <f:param name="Account" value="#{user.account}" />
+                  <f:param name="Render" value="false" />
+               </h:outputLink>
+            </li>
+         </ui:repeat>
+      </ul>
+   </nav>
+
+<h:form>
+   <nav>
+      <ul>
+         <li>
+            <h:commandButton value="ChangeStyle" styleClass="edit-button" action="#{styleBean.toggleMainFile}"/>
+
+         </li>
+      </ul>
+   </nav>
+</h:form>
+
+
+
+   <div class="container">
+      <div class="panel">
+
+         <div class="panel-content">
+            <h:form>
+
+               <div class="form-group">
+                  <label for="account">Account:</label>
+                  <h:inputText id="account" name="title" value="#{account}" required="true"/>
+               </div>
+
+               <div class="form-group">
+                  <label for="passwords">Passwords:</label>
+                  <h:inputSecret id="passwords" name="passwords" value="#{passwords}" required="true" styleClass="password-input"/>
+               </div>
+
+               <div class="form-group">
+                  <h:commandButton value="Log" styleClass="edit-button" action="#{userBean.matchUser(account,passwords)}">
+                     <f:param name="Account" value="#{account}" />
+                     <f:param name="Render" value="true" />
+                  </h:commandButton>
+                  <h:commandButton value="Register" styleClass="edit-button" action="#{userBean.insertUser(account,passwords)}"/>
+               </div>
+
+            </h:form>
+         </div>
+
+      </div>
+      <div class="image-container">
+         <h:graphicImage library="image" name="login.jpg" alt="My Photo"/>
+      </div>
+   </div>
+
+</h:body>
+</html>
